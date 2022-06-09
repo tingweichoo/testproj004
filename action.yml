@@ -1,5 +1,5 @@
 name: "TW_Test"
-description: "Triggers a run from DAI test configuration."
+description: "Testing"
 inputs:
   serverURL:
     description: "The URL of Eggplant DAI server, e.g. http://localhost:8000"
