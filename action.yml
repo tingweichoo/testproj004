@@ -98,12 +98,13 @@ runs:
       run: |
         [[ "${{ inputs.serverURL }}" ]] || { echo "Error: Missing server URL" ; exit 1; }
         [[ "${{ inputs.serverURL }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
+        [[ "${{ inputs.testResultPath }}" = *[/^$|\s+/]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
         COMMANDSTR="${{ inputs.serverURL }} ${{ inputs.testConfigID }} --client-id=${{ inputs.clientID }} --request-timeout=${{ inputs.requestTimeout }} --request-retries=${{ inputs.requestRetries }} --backoff-factor=${{ inputs.backoffFactor }} --poll-interval=${{ inputs.pollInterval }} --log-level=${{ inputs.logLevel }}"
         
         if [ -n "${{ inputs.CACertPath }}" ]; then
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
-       
+        
         if [ -z "${{ inputs.testResultPath }}" ]; then
           echo ${{ inputs.testResultPath }} ;
           if [ -v "${{ inputs.testResultPath }}" ]; then
