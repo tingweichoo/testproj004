@@ -105,6 +105,7 @@ runs:
         fi
        
         if [ -n "${{ inputs.testResultPath }}" ]; then
+          { echo "line 108" }
           [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: Missing testResultPath" ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
