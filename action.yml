@@ -106,7 +106,7 @@ runs:
         fi
         
         if [ -z "${{ inputs.testResultPath }}" ]; then
-          [[ "${{ inputs.testResultPath }}" =~ ^MM*  ]] || { echo "Error: Empty value" ; exit 1; }
+          [[ "${{ inputs.testResultPath }}" =~ ^M+  ]] || { echo "Error: Empty value" ; exit 1; }
         else
           [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
