@@ -107,11 +107,8 @@ runs:
         if [ !-z "${{ inputs.testResultPath }}" ]; then
           echo "unset";
         else
-          if [ "${{ inputs.testResultPath }}" ] ==""]; then
-            echo "Error : missing test result path"; exit 1;
-          else
-            COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
-          fi
+            [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
+            COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
         
         if [ ${{ inputs.dryRun }} == true ]; then
