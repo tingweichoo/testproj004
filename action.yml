@@ -104,10 +104,9 @@ runs:
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
        
-        if [ -n "${{ inputs.testResultPath }}" ]; then
-          if [ -z "${{ inputs.testResultPath }}" ]; then
-            echo "Error: Missing testResultPath" ; exit 1;
-          fi
+        if [ -z "${{ inputs.testResultPath }}" ]; then
+          echo "Error : missing test result path";
+        else
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi 
         
