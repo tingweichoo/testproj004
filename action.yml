@@ -105,11 +105,11 @@ runs:
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
         
-        if [ -z "${{ inputs.testResultPath }}" ]; then
-          [[ "${{ inputs.testResultPath }}" =~ ^M+  ]] || { echo "Error: Empty value" ; exit 1; }
-        else
+        if [ -n "${{ inputs.testResultPath }}" ]; then
           [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
+        else
+          [[ "${{ inputs.testResultPath }}" =~ ^M+  ]] || { echo "Error: Empty value" ; exit 1; }
         fi
         
         if [ ${{ inputs.dryRun }} == true ]; then
