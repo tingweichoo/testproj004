@@ -105,6 +105,7 @@ runs:
         fi
        
         if [ -z "${{ inputs.testResultPath }}" ]; then
+          echo ${ inputs.testResultPath } ;
           if [ -v "${{ inputs.testResultPath }}" ]; then
             echo "Error: Missing test result path" ; exit 1;
           fi
