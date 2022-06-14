@@ -112,7 +112,7 @@ runs:
           else
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
           fi
-        fi 
+        fi
         
         if [ ${{ inputs.dryRun }} == true ]; then
           COMMANDSTR+=" --dry-run"
