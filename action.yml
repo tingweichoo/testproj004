@@ -105,7 +105,8 @@ runs:
         fi
        
         if [ -z "${{ inputs.testResultPath }}" ]; then
-          echo "unset"
+          echo "unset";
+          [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
         else
           [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
