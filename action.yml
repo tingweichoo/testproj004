@@ -105,10 +105,10 @@ runs:
         fi
        
         if [ -z "${{ inputs.testResultPath }}" ]; then
+          echo "unset"
+        else
           [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
-        else
-          echo "unset"
         fi
         
         if [ ${{ inputs.dryRun }} == true ]; then
