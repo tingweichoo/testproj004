@@ -105,10 +105,9 @@ runs:
         fi
        
         if [ -z "${{ inputs.testResultPath }}" ]; then
-          echo "unset";
-          [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
+          echo "Error: Missing test result path" ; exit 1;
         else
-          [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
+          [[ "${{ inputs.serverURL }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
         
