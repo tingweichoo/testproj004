@@ -106,7 +106,7 @@ runs:
        
         if [ -n "${{ inputs.testResultPath }}" ]; then
           if [ -z "${{ inputs.testResultPath }}" ]; then
-           { echo "Error: Missing testResultPath" ; exit 1; }
+           echo "Error: Missing testResultPath" ; exit 1;
           fi
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
