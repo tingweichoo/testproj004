@@ -107,8 +107,8 @@ runs:
         if [ !-z "${{ inputs.testResultPath }}" ]; then
           echo "unset";
         else
-            [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
-            COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
+          [[ "${{ inputs.testResultPath }}" ]] || { echo "Error: test result path" ; exit 1; }
+          COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
         
         if [ ${{ inputs.dryRun }} == true ]; then
