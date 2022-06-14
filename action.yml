@@ -98,7 +98,7 @@ runs:
       run: |
         [[ "${{ inputs.serverURL }}" ]] || { echo "Error: Missing server URL" ; exit 1; }
         [[ "${{ inputs.serverURL }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
-        [[ "${{ inputs.testResultPath }}" =~ ^MM*  ]] || { echo "Error: Empty value" ; exit 1; }
+        
         COMMANDSTR="${{ inputs.serverURL }} ${{ inputs.testConfigID }} --client-id=${{ inputs.clientID }} --request-timeout=${{ inputs.requestTimeout }} --request-retries=${{ inputs.requestRetries }} --backoff-factor=${{ inputs.backoffFactor }} --poll-interval=${{ inputs.pollInterval }} --log-level=${{ inputs.logLevel }}"
         
         if [ -n "${{ inputs.CACertPath }}" ]; then
@@ -106,10 +106,7 @@ runs:
         fi
         
         if [ -z "${{ inputs.testResultPath }}" ]; then
-          echo ${{ inputs.testResultPath }} ;
-          if [ -v "${{ inputs.testResultPath }}" ]; then
-            echo "Error: Missing test result path" ; exit 1;
-          fi
+          [[ "${{ inputs.testResultPath }}" =~ ^MM*  ]] || { echo "Error: Empty value" ; exit 1; }
         else
           [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
