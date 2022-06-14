@@ -96,7 +96,6 @@ runs:
       
     - name: Run Eggplant DAI Test Configuration
       run: |
-        #!/bin/bash
         [[ "${{ inputs.serverURL }}" ]] || { echo "Error: Missing server URL" ; exit 1; }
         [[ "${{ inputs.serverURL }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
         COMMANDSTR="${{ inputs.serverURL }} ${{ inputs.testConfigID }} --client-id=${{ inputs.clientID }} --request-timeout=${{ inputs.requestTimeout }} --request-retries=${{ inputs.requestRetries }} --backoff-factor=${{ inputs.backoffFactor }} --poll-interval=${{ inputs.pollInterval }} --log-level=${{ inputs.logLevel }}"
@@ -105,7 +104,7 @@ runs:
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
        
-        if [ !-z "${(inputs.testResultPath)}" ]; then
+        if [ !-z "${( inputs.testResultPath )}" ]; then
           echo "Error : missing test result path"; exit 1;
         else
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
