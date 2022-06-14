@@ -107,7 +107,7 @@ runs:
         if [ !-z "${{ inputs.testResultPath }}" ]; then
           echo "test";
         else
-          if [ "${{ inputs.serverURL }}" ] ==""]; then
+          if [ "${{ inputs.testResultPath }}" ] ==""]; then
             echo "Error : missing test result path"; exit 1;
           else
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
