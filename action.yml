@@ -87,7 +87,7 @@ runs:
           echo "Downloading $DOWNLOADURL..."
           curl -L $DOWNLOADURL --output $CLI_FILENAME
         fi
-      shell: bash
+      shell: bash 
 
     - name: Set permissions on Eggplant runner executable
       run: |
