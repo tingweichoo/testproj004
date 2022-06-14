@@ -101,7 +101,7 @@ runs:
         if [[ "${{ inputs.testResultPath }}" ]]; then
         { echo "Error: Missing test result path" ; exit 1; }
         fi
-        if [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] then
+        if [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]]; then
         { echo "Error: Test result path consists of empty spaces only." ; exit 1; }
         fi
         COMMANDSTR="${{ inputs.serverURL }} ${{ inputs.testConfigID }} --client-id=${{ inputs.clientID }} --request-timeout=${{ inputs.requestTimeout }} --request-retries=${{ inputs.requestRetries }} --backoff-factor=${{ inputs.backoffFactor }} --poll-interval=${{ inputs.pollInterval }} --log-level=${{ inputs.logLevel }}"
