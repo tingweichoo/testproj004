@@ -105,13 +105,17 @@ runs:
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
         
-        if [ -z "$inputs.testResultPath" ] && [ "${inputs.testResultPath+xxx}" = "xxx" ]; then
-        echo "Empty test result path";exit 1;
-
-        elif [ -n "${{ inputs.testResultPath }}" ]; then
-
-        COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
-
+        if [ -n "${{ inputs.testResultPath }}" ]; then
+          [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Test result path consists of empty spaces only." ; exit 1; }
+          COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
+        fi
+        
+        if [ -f "${{ inputs.testResultPath }}" ]; then
+          echo "Error: Invalid test result path" ; exit 1;
+        fi
+        
+        if [ -d "${{ inputs.CACertPath }}" ]; then
+          echo "Error: Invalid CA Cert Path" ; exit 1;
         fi
         
         if [ ${{ inputs.dryRun }} == true ]; then
