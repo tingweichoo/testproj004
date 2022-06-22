@@ -105,11 +105,11 @@ runs:
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
         
-        if [ -f "${{ inputs.testResultPath }}" ]; then
+        if [ !-f "${{ inputs.testResultPath }}" ]; then
           echo "Error: Invalid test result path" ; exit 1;
         fi
         
-        if [ -d "${{ inputs.CACertPath }}" ]; then
+        if [ !-d "${{ inputs.CACertPath }}" ]; then
           echo "Error: Invalid CA Cert Path" ; exit 1;
         fi
         
