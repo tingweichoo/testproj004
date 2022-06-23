@@ -104,7 +104,6 @@ runs:
         if [ -n "${{ inputs.CACertPath }}" ] then
           if [ ! -e "${{ inputs.CACertPath }}" ] then
             echo "Error: Invalid CA Cert Path" ; 
-            exit 1 ;
           fi
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
@@ -112,7 +111,6 @@ runs:
         if [ -n "${{ inputs.testResultPath }}" ] then
           if [ ! -d "${{ inputs.testResultPath }}" ] then
             echo "Error: Invalid test result path" ; 
-            exit 1 ;
           fi
           [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Test result path consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
