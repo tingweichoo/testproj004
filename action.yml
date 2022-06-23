@@ -101,22 +101,22 @@ runs:
         
         COMMANDSTR="${{ inputs.serverURL }} ${{ inputs.testConfigID }} --client-id=${{ inputs.clientID }} --request-timeout=${{ inputs.requestTimeout }} --request-retries=${{ inputs.requestRetries }} --backoff-factor=${{ inputs.backoffFactor }} --poll-interval=${{ inputs.pollInterval }} --log-level=${{ inputs.logLevel }}"
         
-        if [ -n "${{ inputs.CACertPath }}" ] then
-          if [ ! -e "${{ inputs.CACertPath }}" ] then
+        if [ -n "${{ inputs.CACertPath }}" ]; then
+          if [ ! -e "${{ inputs.CACertPath }}" ]; then
             echo "Error: Invalid CA Cert Path" ;
             exit 1;
           fi
         fi
         
-        if [ -n "${{ inputs.testResultPath }}" ] then
-          if [ ! -d "${{ inputs.testResultPath }}" ] then
+        if [ -n "${{ inputs.testResultPath }}" ]; then
+          if [ ! -d "${{ inputs.testResultPath }}" ]; then
             echo "Error: Invalid test result path" ; 
           fi
           [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Test result path consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
         
-        if [ ${{ inputs.dryRun }} == true ] then
+        if [ ${{ inputs.dryRun }} == true ]; then
           COMMANDSTR+=" --dry-run"
         fi
         
