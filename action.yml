@@ -105,6 +105,7 @@ runs:
           if [ ! -e "${{ inputs.CACertPath }}" ] then
             echo "Error: Invalid CA Cert Path" ; 
           fi
+          
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
         
