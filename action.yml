@@ -103,10 +103,9 @@ runs:
         
         if [ -n "${{ inputs.CACertPath }}" ] then
           if [ ! -e "${{ inputs.CACertPath }}" ] then
-            echo "Error: Invalid CA Cert Path" ; 
+            echo "Error: Invalid CA Cert Path" ;
+            exit 1;
           fi
-          
-          COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
         
         if [ -n "${{ inputs.testResultPath }}" ] then
