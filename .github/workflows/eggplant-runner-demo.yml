@@ -20,7 +20,7 @@ jobs:
       - name: Eggplant Runner
         uses: tingweichoo/testproj004@main
         with:
-          dryRun: true
+          dryRun: false
           serverURL: "http://localhost:8000"
           clientID: "client:dai:agent:integration"
           testConfigID: "e9c15662-8c1b-472e-930d-aa0b11726093" # Test configuration which need to perform execution
