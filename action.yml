@@ -103,13 +103,17 @@ runs:
         if [ -n "${{ inputs.CACertPath }}" ]; then
           echo "In CACertPath";
           if [ ! -f "${{ inputs.CACertPath }}" ]; then
-            echo "File exist";
+            echo "Invalid CA Cert Path";
           fi
           
           COMMANDSTR+=" --ca-cert-path=${{ inputs.CACertPath }}"
         fi
         
         if [ -n "${{ inputs.testResultPath }}" ]; then
+          echo "In testResultPath";
+          if [ ! -d "${{ inputs.testResultPath }}" ]; then
+            echo "Invalid Test Result Path";
+          fi
           [[ "${{ inputs.testResultPath }}" = *[!\ ]*  ]] || { echo "Error: Test result path consists of empty spaces only." ; exit 1; }
           COMMANDSTR+=" --test-result-path=${{ inputs.testResultPath }}"
         fi
