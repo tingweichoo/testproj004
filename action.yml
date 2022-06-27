@@ -97,6 +97,7 @@ runs:
     - name: Run Eggplant DAI Test Configuration
       run: |
         mkdir -p C:/testResultPath/;
+        [ -d "C:/testResultPath/" ] && echo "Directory C:/testResultPath/ exists."
         [[ "${{ inputs.serverURL }}" ]] || { echo "Error: Missing server URL" ; exit 1; }
         [[ "${{ inputs.serverURL }}" = *[!\ ]*  ]] || { echo "Error: Server URL consists of empty spaces only." ; exit 1; }
         COMMANDSTR="${{ inputs.serverURL }} ${{ inputs.testConfigID }} --client-id=${{ inputs.clientID }} --request-timeout=${{ inputs.requestTimeout }} --request-retries=${{ inputs.requestRetries }} --backoff-factor=${{ inputs.backoffFactor }} --poll-interval=${{ inputs.pollInterval }} --log-level=${{ inputs.logLevel }}"
