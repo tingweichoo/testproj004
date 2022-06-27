@@ -96,7 +96,7 @@ runs:
       
     - name: Run Eggplant DAI Test Configuration
       run: |
-        mkdir C:/testResultPath/;
+        mkdir -p C:/testResultPath/;
         cd C:/testResultPath/;
         touch test.cer;
         [ -d "C:/testResultPath/" ] && echo "Directory C:/testResultPath/ exists."
